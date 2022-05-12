@@ -12,11 +12,11 @@ const execAsync = util.promisify(exec);
 function addWarmUpFunctionRoleToResources(service, stage, warmerName, warmerConfig) {
   // eslint-disable-next-line no-param-reassign
   warmerConfig.role = `WarmUpPlugin${capitalize(warmerName)}Role`;
-  if (typeof service.resources !== 'object') {
+  if (!service.resources || typeof service.resources !== 'object') {
     // eslint-disable-next-line no-param-reassign
     service.resources = {};
   }
-  if (typeof service.resources.Resources !== 'object') {
+  if (!service.resources.Resources || typeof service.resources.Resources !== 'object') {
     // eslint-disable-next-line no-param-reassign
     service.resources.Resources = {};
   }
